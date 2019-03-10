@@ -8,10 +8,7 @@ import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PlayerLevelUp implements CustomTrigger<PlayerLevelUpEvent> {
     @Override
@@ -31,6 +28,11 @@ public class PlayerLevelUp implements CustomTrigger<PlayerLevelUpEvent> {
 
     @Override
     public String getKey() {
+        return "PLAYER_LEVEL_UP";
+    }
+
+    @Override
+    public String getDisplayName() {
         return "Player Level Up";
     }
 
@@ -47,7 +49,7 @@ public class PlayerLevelUp implements CustomTrigger<PlayerLevelUpEvent> {
 
     @Override
     public LivingEntity getCaster(PlayerLevelUpEvent event) {
-        return ((PlayerLevelUpEvent)event).getPlayerData().getPlayer();
+        return event.getPlayerData().getPlayer();
     }
 
     @Override
@@ -56,6 +58,7 @@ public class PlayerLevelUp implements CustomTrigger<PlayerLevelUpEvent> {
     }
 
     @Override
+    @SuppressWarnings("Unchecked")
     public void setValues(PlayerLevelUpEvent event, Map map) {
         map.put("player_levelup_now",event.getLevel());
         map.put("player_levelup_amount",event.getAmount());

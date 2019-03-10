@@ -8,10 +8,14 @@ import com.github.MrMks.skill.NonSkill;
 import com.google.common.collect.ImmutableList;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.SkillPlugin;
+import com.sucy.skill.dynamic.ComponentRegistry;
+import com.sucy.skill.dynamic.TriggerHandler;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.trigger.Trigger;
+import org.apache.logging.log4j.core.config.builder.api.Component;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends JavaPlugin implements SkillPlugin {
@@ -27,9 +31,18 @@ public class Main extends JavaPlugin implements SkillPlugin {
 
     @Override
     public List<Trigger> getTriggers() {
-        return ImmutableList.of(
+        ImmutableList<Trigger> list = ImmutableList.of(
                 new PlayerLevelUp()
         );
+        ArrayList<Trigger> arrayList = new ArrayList<>();
+
+        for (Trigger trigger :
+                list) {
+            if (null == ComponentRegistry.getTrigger(trigger.getKey())){
+                arrayList.add(trigger);
+            }
+        }
+        return arrayList;
     }
 
     @Override

@@ -29,7 +29,7 @@ public class CheckUntil extends CustomEffectComponent {
         //return false;
         //String flag = (String) DynamicSkill.getCastData(livingEntity).get("flag");
         String flag = settings.getString("flag");
-        System.out.print(flag);
+        //System.out.print(flag);
 
         CheckUntilThread th = new CheckUntilThread(this);
         th.init(livingEntity, i, list);
