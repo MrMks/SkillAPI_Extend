@@ -58,8 +58,7 @@ public class PlayerLevelUp implements CustomTrigger<PlayerLevelUpEvent> {
     }
 
     @Override
-    @SuppressWarnings("Unchecked")
-    public void setValues(PlayerLevelUpEvent event, Map map) {
+    public void setValues(PlayerLevelUpEvent event, Map<String,Object> map) {
         map.put("player_levelup_now",event.getLevel());
         map.put("player_levelup_amount",event.getAmount());
     }
