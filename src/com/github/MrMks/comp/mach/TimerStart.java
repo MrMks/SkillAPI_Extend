@@ -1,5 +1,7 @@
 package com.github.MrMks.comp.mach;
 
+import com.github.MrMks.comp.mach.timer.TimerRunnable;
+import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.player.PlayerData;
 import com.sucy.skill.api.util.FlagManager;
 import com.sucy.skill.dynamic.ComponentType;
@@ -39,9 +41,10 @@ public class TimerStart extends CustomEffectComponent {
         if(FlagManager.hasFlag(livingEntity,"skillapi_addon_timer")) return false;
 
         //PlayerData data = getSkillData(livingEntity).getPlayerData();
-        double start = System.currentTimeMillis();
-        HashMap<String, Object> data = DynamicSkill.getCastData(livingEntity);
-        data.put("skillapi_addon_timer_start",start);
+        //double start = System.currentTimeMillis();
+        //HashMap<String, Object> data = DynamicSkill.getCastData(livingEntity);
+        //data.put("skillapi_addon_timer_start",start);
+        SkillAPI.schedule(new TimerRunnable(livingEntity.getName()),0,0);
         FlagManager.addFlag(livingEntity,"skillapi_addon_timer",-1);
         return true;
     }

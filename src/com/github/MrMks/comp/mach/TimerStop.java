@@ -1,5 +1,6 @@
 package com.github.MrMks.comp.mach;
 
+import com.github.MrMks.comp.mach.timer.TimerRunnable;
 import com.sucy.skill.api.util.FlagManager;
 import com.sucy.skill.dynamic.ComponentType;
 import com.sucy.skill.dynamic.DynamicSkill;
@@ -42,8 +43,9 @@ public class TimerStop extends CustomEffectComponent {
         if(!is){
             data.put("last_time",(double)0);
         } else {
-            double start = (double)data.get("skillapi_addon_timer_start");
-            data.put("last_time",(System.currentTimeMillis() - start)/1000.0);
+            //double start = (double)data.get("skillapi_addon_timer_start");
+            int ticks = TimerRunnable.getTimer(livingEntity.getName()).getTicks();
+            data.put("last_time",ticks/20.0);
             FlagManager.removeFlag(livingEntity,"skillapi_addon_timer");
         }
         return true;
