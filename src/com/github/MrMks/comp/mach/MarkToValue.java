@@ -3,17 +3,19 @@ package com.github.MrMks.comp.mach;
 import com.google.common.collect.ImmutableList;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.dynamic.ComponentType;
+import com.sucy.skill.dynamic.DynamicSkill;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.LivingEntity;
+import utils.mark.MarkManager;
 
 import java.util.List;
 
-public class AutoMaxHealth extends CustomEffectComponent {
+public class MarkToValue extends CustomEffectComponent {
     @Override
     public String getKey() {
-        return "Auto Max Health";
+        return "Mark To Value";
     }
 
     @Override
@@ -23,26 +25,26 @@ public class AutoMaxHealth extends CustomEffectComponent {
 
     @Override
     public String getDescription() {
-        return  "Add the Max Health. The value will be \'the amount * (the player level - from + 1)\'";
+        return "Count tbe marks amd store it to the Caster.If you choose many target, then no one can know what will happen";
     }
 
     @Override
     public List<EditorOption> getOptions() {
         return ImmutableList.of(
-                EditorOption.number("from","From","[from]",0,0),
-                EditorOption.number("amount","Amount","[amount]",2,1)
+                EditorOption.text("vkey","Value key","[vkey]","key"),
+                EditorOption.text("mkey","Mark Key","[mkey]","key")
         );
     }
 
     @Override
     public boolean execute(LivingEntity livingEntity, int i, List<LivingEntity> list) {
-        int level = SkillAPI.getPlayerData((OfflinePlayer)livingEntity).getSkill(skill.getName()).getPlayerClass().getLevel() + 1;
-        double amount = parseValues(livingEntity,"amount",i,0);
-        double from = parseValues(livingEntity,"from",i,0);
+        if (list.isEmpty()) return false;
 
-        level -= Math.round(Math.floor(from));
+        String vkey = (String) DynamicSkill.getCastData(livingEntity).get("vkey");
+        String mkey = (String) DynamicSkill.getCastData(livingEntity).get("mkey");
 
-        SkillAPI.getPlayerData((OfflinePlayer) livingEntity).addMaxHealth(amount * level);
+
+        DynamicSkill.getCastData(livingEntity).put(vkey, MarkManager.getMarkCount(list.get(0),mkey));
         return true;
     }
 }

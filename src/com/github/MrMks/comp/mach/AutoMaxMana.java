@@ -26,7 +26,7 @@ public class AutoMaxMana extends CustomEffectComponent {
 
     @Override
     public String getDescription() {
-        return "Add the Max Mana. The value will be \'the amount * (the player level - from - 1)\'";
+        return "Add the Max Mana. The value will be \'the amount * (the player level - from + 1)\'";
     }
 
     @Override
@@ -42,7 +42,7 @@ public class AutoMaxMana extends CustomEffectComponent {
         //return false;
         PlayerSkill skill1 = SkillAPI.getPlayerData((OfflinePlayer) livingEntity).getSkill(skill.getName());
         //double mana_base = skill1.getPlayerClass().getData().getBaseMana();
-        int player_level = skill1.getPlayerClass().getLevel() - 1;
+        int player_level = skill1.getPlayerClass().getLevel() + 1;
 
         double amount = parseValues(livingEntity,"amount",i,0);
         double from = parseValues(livingEntity,"from",i,0);
