@@ -6,7 +6,7 @@ import com.sucy.skill.dynamic.DynamicSkill;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
-import utils.mark.MarkManager;
+import com.github.MrMks.utils.mark.MarkManager;
 
 import java.util.List;
 
@@ -38,17 +38,15 @@ public class MarkAddMach extends CustomEffectComponent {
 
     @Override
     public boolean execute(LivingEntity livingEntity, int i, List<LivingEntity> list) {
-        String key = (String) DynamicSkill.getCastData(livingEntity).get("key");
-        long amount = Math.round(parseValues(livingEntity,"amount",i,1));
-        long max = Math.round(parseValues(livingEntity,"max",i,10));
-        long radius = Math.round(parseValues(livingEntity,"radius",i,10)) * 20;
+        String key = settings.getString("key");
+        int amount = (int) Math.round(parseValues(livingEntity,"amount",i,1));
+        int max = (int)Math.round(parseValues(livingEntity,"max",i,10));
+        int radius = (int)Math.round(parseValues(livingEntity,"radius",i,10)) * 20;
 
         amount = amount > max ? max : amount;
-        if (MarkManager.hasMark(livingEntity,key)){
-            amount += MarkManager.getMarkCount(livingEntity,key);
-            amount = amount > max ? max : amount;
-            MarkManager.addMark(livingEntity,key,(int)amount);
-            MarkManager.refreshCleaner(livingEntity,key,(int)radius);
+        for(LivingEntity entity:list){
+            MarkManager.addMark(entity,key,amount,max);
+            MarkManager.refreshCleaner(entity,key,radius);
         }
 
         return true;

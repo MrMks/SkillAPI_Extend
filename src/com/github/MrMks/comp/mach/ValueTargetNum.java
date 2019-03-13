@@ -29,7 +29,7 @@ public class ValueTargetNum extends CustomEffectComponent {
     @Override
     public List<EditorOption> getOptions() {
         return ImmutableList.of(
-                EditorOption.text("key","Key","The unique key to store the value under","value")
+                EditorOption.text("key","Key","[key]The unique key to store the value under","value")
         );
     }
 

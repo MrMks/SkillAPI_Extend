@@ -1,14 +1,12 @@
 package com.github.MrMks.comp.mach;
 
 import com.google.common.collect.ImmutableList;
-import com.sucy.skill.SkillAPI;
 import com.sucy.skill.dynamic.ComponentType;
 import com.sucy.skill.dynamic.DynamicSkill;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.LivingEntity;
-import utils.mark.MarkManager;
+import com.github.MrMks.utils.mark.MarkManager;
 
 import java.util.List;
 
@@ -40,11 +38,11 @@ public class MarkToValue extends CustomEffectComponent {
     public boolean execute(LivingEntity livingEntity, int i, List<LivingEntity> list) {
         if (list.isEmpty()) return false;
 
-        String vkey = (String) DynamicSkill.getCastData(livingEntity).get("vkey");
-        String mkey = (String) DynamicSkill.getCastData(livingEntity).get("mkey");
+        String vkey = settings.getString("vkey");
+        String mkey = settings.getString("mkey");
 
 
-        DynamicSkill.getCastData(livingEntity).put(vkey, MarkManager.getMarkCount(list.get(0),mkey));
+        DynamicSkill.getCastData(livingEntity).put(vkey, (double)MarkManager.getMarkCount(list.get(0),mkey));
         return true;
     }
 }

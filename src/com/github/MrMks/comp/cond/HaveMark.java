@@ -1,46 +1,50 @@
-package com.github.MrMks.comp.mach;
+package com.github.MrMks.comp.cond;
 
+import com.github.MrMks.utils.mark.MarkManager;
 import com.google.common.collect.ImmutableList;
 import com.sucy.skill.dynamic.ComponentType;
-import com.sucy.skill.dynamic.DynamicSkill;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
-import com.github.MrMks.utils.mark.MarkManager;
 
+import java.util.LinkedList;
 import java.util.List;
 
-public class MarkRemoveMach extends CustomEffectComponent {
+public class HaveMark extends CustomEffectComponent {
     @Override
     public String getKey() {
-        return "Mark Remove";
+        return "Have Mark";
     }
 
     @Override
     public ComponentType getType() {
-        return ComponentType.MECHANIC;
+        return ComponentType.CONDITION;
     }
 
     @Override
     public String getDescription() {
-        return "Remove the Mark";
+        return "Check if the target have mark";
     }
 
     @Override
     public List<EditorOption> getOptions() {
         return ImmutableList.of(
-               EditorOption.text("key","Key","[key]","key")
+                EditorOption.text("key","Key","[key]","key")
         );
     }
 
     @Override
     public boolean execute(LivingEntity livingEntity, int i, List<LivingEntity> list) {
         String key = settings.getString("key");
-        for (LivingEntity e :
-                list) {
-            MarkManager.removeCleaner(e, key);
-            MarkManager.removeMark(e,key);
+        LinkedList<LivingEntity> tmp = new LinkedList<>();
+        boolean re = false;
+        for (LivingEntity entity:list){
+            if (MarkManager.hasMark(entity,key)){
+                tmp.add(entity);
+                re = re | executeChildren(livingEntity,i,tmp);
+                tmp.clear();
+            }
         }
-        return true;
+        return re;
     }
 }
