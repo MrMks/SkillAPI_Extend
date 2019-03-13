@@ -4,11 +4,12 @@ import com.sucy.skill.api.util.FlagManager;
 import com.sucy.skill.dynamic.EffectComponent;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class CheckUntilThread implements Runnable {
+public class CheckUntilThread extends BukkitRunnable {
 
     private CustomEffectComponent component;
 
@@ -40,17 +41,17 @@ public class CheckUntilThread implements Runnable {
 
         thread.start();
 
-        while (true){
-            if (!flag_t.get()){
+        while (true) {
+            if (!flag_t.get()) {
                 thread.interrupt();
                 return;
             }
 
-            if (!FlagManager.hasFlag(caster,flag)){
+            if (!FlagManager.hasFlag(caster, flag)) {
                 thread.interrupt();
                 for (EffectComponent c :
                         component.children) {
-                    c.execute(caster,level,targets);
+                    c.execute(caster, level, targets);
                 }
             }
         }

@@ -45,6 +45,7 @@ public class TimerStop extends CustomEffectComponent {
         } else {
             //double start = (double)data.get("skillapi_addon_timer_start");
             int ticks = TimerRunnable.getTimer(livingEntity.getName()).getTicks();
+            TimerRunnable.getTimer(livingEntity.getName()).cancel();
             data.put("last_time",ticks/20.0);
             FlagManager.removeFlag(livingEntity,"skillapi_addon_timer");
         }
