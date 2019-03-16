@@ -1,4 +1,4 @@
-package com.github.MrMks.comp.cond.checkUntil;
+package com.github.MrMks.utils.checkUntil;
 
 import com.sucy.skill.api.util.FlagManager;
 import com.sucy.skill.dynamic.EffectComponent;

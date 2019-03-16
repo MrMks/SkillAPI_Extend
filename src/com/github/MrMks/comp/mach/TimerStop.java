@@ -1,6 +1,6 @@
 package com.github.MrMks.comp.mach;
 
-import com.github.MrMks.comp.mach.timer.TimerRunnable;
+import com.github.MrMks.utils.timer.TimerRunnable;
 import com.sucy.skill.api.util.FlagManager;
 import com.sucy.skill.dynamic.ComponentType;
 import com.sucy.skill.dynamic.DynamicSkill;
@@ -9,7 +9,6 @@ import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.github.MrMks.utils.mark;
 
 import com.sucy.skill.SkillAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.LinkedHashMap;
 import java.util.UUID;
@@ -18,41 +18,34 @@ public class MarkManager {
         return map.containsKey(uuid) && map.get(uuid).containsKey(key);
     }
 
-    public static void addMark(LivingEntity target, String key, int amount, int max){
-        addMark(target.getUniqueId(), key, amount, max);
+    public static void addMark(LivingEntity target, String key, int amount, int max, int ticks){
+        addMark(target.getUniqueId(), key, amount, max, ticks);
     }
 
-    private static void addMark(UUID uuid, String key, int amount, int max){
+    private static void addMark(UUID uuid, String key, int amount, int max, int ticks){
         if (!map.containsKey(uuid)){
             map.put(uuid,new LinkedHashMap<>());
         }
 
         if (!map.get(uuid).containsKey(key)){
-            setMark(uuid, key, amount,max);
+            setMark(uuid, key, amount,max,ticks);
         } else {
             amount += map.get(uuid).get(key);
             if (amount <= 0){
                 removeMark(uuid,key);
             } else {
                 amount = amount > max ? max : amount;
-                map.get(uuid).remove(key);
                 map.get(uuid).put(key,amount);
+                refreshCleaner(uuid,key,ticks);
             }
         }
-
-        /*
-        System.out.print("addMark");
-        System.out.print(map);
-        System.out.println();
-        */
     }
 
-    public static void setMark(LivingEntity target, String key, int value, int max){
-        setMark(target.getUniqueId(), key, value, max);
-
+    public static void setMark(LivingEntity target, String key, int value, int max, int ticks){
+        setMark(target.getUniqueId(), key, value, max, ticks);
     }
 
-    private static void setMark(UUID uuid, String key, int value, int max){
+    private static void setMark(UUID uuid, String key, int value, int max, int ticks){
         if (value <= 0) return;
         if (!map.containsKey(uuid)){
             map.put(uuid,new LinkedHashMap<>());
@@ -61,9 +54,9 @@ public class MarkManager {
         value = value > max ? max : value;
 
         LinkedHashMap<String,Integer> subMap = map.get(uuid);
-
-        subMap.remove(key);
         subMap.put(key,value);
+
+        addCleaner(uuid,key,ticks);
     }
 
     public static int getMarkCount(LivingEntity entity, String key){
@@ -72,13 +65,6 @@ public class MarkManager {
 
     private static int getMarkCount(UUID uuid, String key){
         if(hasMark(uuid, key)){
-
-            /*
-            System.out.print("getCount");
-            System.out.print(map.get(uuid).get(key));
-            System.out.println();
-            */
-
             return map.get(uuid).get(key);
         }
         return 0;
@@ -90,8 +76,8 @@ public class MarkManager {
 
     static void removeMark(UUID uuid, String key){
         if (hasMark(uuid, key)) map.get(uuid).remove(key);
+        removeCleaner(uuid,key);
     }
-
 
     private static LinkedHashMap<UUID,LinkedHashMap<String, MarkCleaner>> cleaners = new LinkedHashMap<>();
 
@@ -99,51 +85,40 @@ public class MarkManager {
         addCleaner(tar.getUniqueId(), key, radius);
     }
 
-    private static void addCleaner(UUID uuid, String key, int radius){
+    private static void addCleaner(UUID uuid, String key, int ticks){
         if (!cleaners.containsKey(uuid)){
             cleaners.put(uuid,new LinkedHashMap<>());
         }
 
         MarkCleaner runnable = new MarkCleaner(uuid,key);
         cleaners.get(uuid).put(key,runnable);
-        SkillAPI.schedule(runnable,radius);
+        //SkillAPI.schedule(runnable,ticks);
+        //runnable.runTaskLater(Bukkit.getPluginManager().getPlugin("skillapi_addon"),ticks);
+        runnable.runTaskLater(ticks);
     }
 
-    public static void refreshCleaner(LivingEntity tar, String key, int radius){
-        refreshCleaner(tar.getUniqueId(), key, radius);
+    public static void refreshCleaner(LivingEntity tar, String key, int ticks){
+        refreshCleaner(tar.getUniqueId(), key, ticks);
     }
 
-    private static void refreshCleaner(UUID uuid, String key, int radius){
+    private static void refreshCleaner(UUID uuid, String key, int ticks){
         if (!(cleaners.containsKey(uuid) && cleaners.get(uuid).containsKey(key))){
-            addCleaner(uuid, key, radius);
+            addCleaner(uuid, key, ticks);
             return;
         }
 
-        MarkCleaner runnable = cleaners.get(uuid).get(key);
-
-        runnable.stop();
-        cleaners.get(uuid).remove(key);
-        addCleaner(uuid, key, radius);
-
-        /*
-        System.out.print("refresh");
-        System.out.print(cleaners);
-        System.out.println();
-        */
+        removeCleaner(uuid, key);
+        addCleaner(uuid, key, ticks);
     }
 
     public static void removeCleaner(LivingEntity livingEntity, String key){
         removeCleaner(livingEntity.getUniqueId(),key);
     }
 
-    static void removeCleaner(UUID uuid, String key){
-        cleaners.get(uuid).get(key).cancel();
+    synchronized static void removeCleaner(UUID uuid, String key){
+        if(!(cleaners.containsKey(uuid) && cleaners.get(uuid).containsKey(key))) return;
+        cleaners.get(uuid).get(key).stop();
+        //cleaners.get(uuid).get(key).cancel();
         cleaners.get(uuid).remove(key);
-
-        /*
-        System.out.print("remove");
-        System.out.print(cleaners);
-        System.out.println();
-        */
     }
 }

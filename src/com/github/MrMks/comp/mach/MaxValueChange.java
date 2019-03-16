@@ -45,7 +45,5 @@ public abstract class MaxValueChange extends CustomEffectComponent {
         return true;
     }
 
-    //protected abstract String getK();
-    //protected abstract String getD();
     protected abstract void e(PlayerData data,double v);
 }

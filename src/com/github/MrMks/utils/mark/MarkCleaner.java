@@ -1,10 +1,10 @@
 package com.github.MrMks.utils.mark;
 
-import org.bukkit.scheduler.BukkitRunnable;
+import com.github.MrMks.utils.SkillAPIAddonRunnable;
 
 import java.util.UUID;
 
-public class MarkCleaner extends BukkitRunnable {
+public class MarkCleaner extends SkillAPIAddonRunnable {
 
     private UUID uuid;
     private String key;
@@ -22,12 +22,19 @@ public class MarkCleaner extends BukkitRunnable {
 
     @Override
     public void run() {
-        if (stopped) return;
+
+        if (stopped) {
+            cancel();
+            return;
+        }
+
         MarkManager.removeMark(uuid,key);
         MarkManager.removeCleaner(uuid,key);
     }
 
+    /*
     public MarkCleaner newCleaner(){
         return new MarkCleaner(uuid,key);
     }
+    */
 }

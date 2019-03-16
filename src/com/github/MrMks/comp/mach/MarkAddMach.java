@@ -32,7 +32,7 @@ public class MarkAddMach extends CustomEffectComponent {
                 EditorOption.text("key","Key","[key]","key"),
                 EditorOption.number("amount","Amount","[amount]",1,0),
                 EditorOption.number("max","Max","[max]",10,0),
-                EditorOption.number("radius","Radius","[radius]",10,0)
+                EditorOption.number("duration","Duration","[radius]",10,0)
         );
     }
 
@@ -41,12 +41,12 @@ public class MarkAddMach extends CustomEffectComponent {
         String key = settings.getString("key");
         int amount = (int) Math.round(parseValues(livingEntity,"amount",i,1));
         int max = (int)Math.round(parseValues(livingEntity,"max",i,10));
-        int radius = (int)Math.round(parseValues(livingEntity,"radius",i,10)) * 20;
+        int ticks = (int)Math.round(parseValues(livingEntity,"duration",i,10)) * 20;
 
         amount = amount > max ? max : amount;
         for(LivingEntity entity:list){
-            MarkManager.addMark(entity,key,amount,max);
-            MarkManager.refreshCleaner(entity,key,radius);
+            MarkManager.addMark(entity,key,amount,max,ticks);
+            //MarkManager.refreshCleaner(entity,key,ticks);
         }
 
         return true;

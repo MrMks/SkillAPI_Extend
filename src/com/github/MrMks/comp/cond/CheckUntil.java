@@ -1,14 +1,11 @@
 package com.github.MrMks.comp.cond;
 
-import com.github.MrMks.comp.cond.checkUntil.CheckUntilRunnable;
+import com.github.MrMks.utils.checkUntil.CheckUntilRunnable;
 import com.google.common.collect.ImmutableList;
-import com.sucy.skill.SkillAPI;
 import com.sucy.skill.dynamic.ComponentType;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.List;
 
@@ -39,7 +36,6 @@ public class CheckUntil extends CustomEffectComponent {
         CheckUntilRunnable runnable = new CheckUntilRunnable(this);
         runnable.init(livingEntity,i,list);
         runnable.runTaskTimer(
-                Bukkit.getPluginManager().getPlugin("skillapi_addon"),
                 0,
                 1
         );
@@ -56,6 +52,10 @@ public class CheckUntil extends CustomEffectComponent {
         return ImmutableList.of(
                 EditorOption.text("flag","Flag","the flag will watch on","check_until_flag")
         );
+    }
+
+    public boolean ec(LivingEntity entity, int i, List<LivingEntity> tar){
+        return executeChildren(entity,i,tar);
     }
 
 }

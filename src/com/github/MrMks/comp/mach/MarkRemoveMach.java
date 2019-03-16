@@ -2,7 +2,6 @@ package com.github.MrMks.comp.mach;
 
 import com.google.common.collect.ImmutableList;
 import com.sucy.skill.dynamic.ComponentType;
-import com.sucy.skill.dynamic.DynamicSkill;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
@@ -38,7 +37,7 @@ public class MarkRemoveMach extends CustomEffectComponent {
         String key = settings.getString("key");
         for (LivingEntity e :
                 list) {
-            MarkManager.removeCleaner(e, key);
+            //MarkManager.removeCleaner(e, key);
             MarkManager.removeMark(e,key);
         }
         return true;

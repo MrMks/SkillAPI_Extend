@@ -1,10 +1,10 @@
-package com.github.MrMks.comp.mach.timer;
+package com.github.MrMks.utils.timer;
 
-import org.bukkit.scheduler.BukkitRunnable;
+import com.github.MrMks.utils.SkillAPIAddonRunnable;
 
 import java.util.LinkedHashMap;
 
-public class TimerRunnable extends BukkitRunnable {
+public class TimerRunnable extends SkillAPIAddonRunnable {
 
     public TimerRunnable(String key){
         list.put(key,this);

@@ -23,7 +23,7 @@ public class ValueTargetNum extends CustomEffectComponent {
 
     @Override
     public String getDescription() {
-        return "Value the number of the target to under a unique key";
+        return "Value the number of the target under a unique key";
     }
 
     @Override
