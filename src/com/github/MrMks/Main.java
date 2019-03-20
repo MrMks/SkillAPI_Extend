@@ -10,10 +10,8 @@ import com.google.common.collect.ImmutableList;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.SkillPlugin;
 import com.sucy.skill.dynamic.ComponentRegistry;
-import com.sucy.skill.dynamic.TriggerHandler;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.trigger.Trigger;
-import org.apache.logging.log4j.core.config.builder.api.Component;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -54,7 +52,6 @@ public class Main extends JavaPlugin implements SkillPlugin {
                 new MaxHealth(),
                 new TimerStart(),
                 new TimerStop(),
-                //new Wait(),
                 new CheckUntil(),
                 new AutoMaxHealth(),
                 new AutoMaxMana(),
@@ -62,7 +59,20 @@ public class Main extends JavaPlugin implements SkillPlugin {
                 new MarkSetMach(),
                 new MarkRemoveMach(),
                 new MarkToValue(),
-                new HaveMark()
+                new HaveMark(),
+                new ValueOnDurability()
         );
     }
+
+    /*
+    @Override
+    public void onEnable() {
+        super.onEnable();
+        try {
+            Class.forName("com.github.com.SAPI").getMethod("print").invoke(Class.forName("com.github.com.SAPI"));
+        } catch (IllegalAccessException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+    */
 }

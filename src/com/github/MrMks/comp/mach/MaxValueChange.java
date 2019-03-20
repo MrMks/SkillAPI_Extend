@@ -1,6 +1,5 @@
 package com.github.MrMks.comp.mach;
 
-import com.google.common.collect.ImmutableMap;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.player.PlayerData;
 import com.sucy.skill.dynamic.ComponentType;
@@ -10,7 +9,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public abstract class MaxValueChange extends CustomEffectComponent {

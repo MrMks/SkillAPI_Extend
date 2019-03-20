@@ -1,12 +1,11 @@
 package com.github.MrMks.comp.mach;
 
+import com.github.MrMks.utils.mark.MarkManager;
 import com.google.common.collect.ImmutableList;
 import com.sucy.skill.dynamic.ComponentType;
-import com.sucy.skill.dynamic.DynamicSkill;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
-import com.github.MrMks.utils.mark.MarkManager;
 
 import java.util.List;
 

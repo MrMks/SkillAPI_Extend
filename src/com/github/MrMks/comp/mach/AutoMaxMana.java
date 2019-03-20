@@ -2,10 +2,8 @@ package com.github.MrMks.comp.mach;
 
 import com.google.common.collect.ImmutableList;
 import com.sucy.skill.SkillAPI;
-import com.sucy.skill.api.classes.RPGClass;
 import com.sucy.skill.api.player.PlayerSkill;
 import com.sucy.skill.dynamic.ComponentType;
-import com.sucy.skill.dynamic.DynamicSkill;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.OfflinePlayer;
