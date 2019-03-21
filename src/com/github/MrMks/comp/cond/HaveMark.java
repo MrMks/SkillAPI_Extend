@@ -2,23 +2,16 @@ package com.github.MrMks.comp.cond;
 
 import com.github.MrMks.utils.mark.MarkManager;
 import com.google.common.collect.ImmutableList;
-import com.sucy.skill.dynamic.ComponentType;
-import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class HaveMark extends CustomEffectComponent {
+public class HaveMark extends Cond_Base {
     @Override
     public String getKey() {
         return "Have Mark";
-    }
-
-    @Override
-    public ComponentType getType() {
-        return ComponentType.CONDITION;
     }
 
     @Override

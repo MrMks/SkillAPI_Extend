@@ -6,9 +6,10 @@ import com.sucy.skill.dynamic.ComponentType;
 import com.sucy.skill.dynamic.custom.CustomTrigger;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.Event;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class PlayerLevelUp implements CustomTrigger<PlayerLevelUpEvent> {
     @Override

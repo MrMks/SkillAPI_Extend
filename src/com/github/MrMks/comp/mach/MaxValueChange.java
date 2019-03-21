@@ -2,8 +2,6 @@ package com.github.MrMks.comp.mach;
 
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.player.PlayerData;
-import com.sucy.skill.dynamic.ComponentType;
-import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.LivingEntity;
@@ -11,12 +9,7 @@ import org.bukkit.entity.LivingEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MaxValueChange extends CustomEffectComponent {
-
-    @Override
-    public ComponentType getType() {
-        return ComponentType.MECHANIC;
-    }
+public abstract class MaxValueChange extends Mach_Base {
 
     @Override
     public String getDescription() {

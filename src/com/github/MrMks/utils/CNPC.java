@@ -9,8 +9,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.UUID;
 
 public class CNPC {
-    private static NpcAPI api = NpcAPI.Instance();
+    private static NpcAPI api;
     private static IEntity getEntity(UUID uuid){
+        if(api == null) api = NpcAPI.Instance();
         org.bukkit.entity.Entity entity = Bukkit.getEntity(uuid);
         try {
             return api.getIEntity((Entity)entity.getClass().getMethod("getHandle").invoke(entity));
@@ -20,6 +21,9 @@ public class CNPC {
         }
     }
 
+    /*
+    methods following to provide a method access cnpc saved datas;
+     */
     //temp_data start
     public static boolean hasTempData(UUID uuid, String key){
         IEntity entity = getEntity(uuid);

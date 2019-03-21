@@ -1,8 +1,7 @@
 package com.github.MrMks;
 
 import com.github.MrMks.classes.NonClass;
-import com.github.MrMks.comp.cond.CheckUntil;
-import com.github.MrMks.comp.cond.HaveMark;
+import com.github.MrMks.comp.cond.*;
 import com.github.MrMks.comp.mach.*;
 import com.github.MrMks.comp.trig.PlayerLevelUp;
 import com.github.MrMks.skill.NonSkill;
@@ -60,7 +59,14 @@ public class Main extends JavaPlugin implements SkillPlugin {
                 new MarkRemoveMach(),
                 new MarkToValue(),
                 new HaveMark(),
-                new ValueOnDurability()
+                new ValueOnDurability(),
+                new CNPC_StoredData(),
+                new CNPC_TempData(),
+                new CNPC_StoredDataEqual(),
+                new CNPC_TempDataEqual(),
+                new CNPC_ValueData(),
+                new CNPC_RemoveData(),
+                new CNPC_ClearData()
         );
     }
 

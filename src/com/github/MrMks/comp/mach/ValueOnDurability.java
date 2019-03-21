@@ -1,9 +1,7 @@
 package com.github.MrMks.comp.mach;
 
 import com.google.common.collect.ImmutableList;
-import com.sucy.skill.dynamic.ComponentType;
 import com.sucy.skill.dynamic.DynamicSkill;
-import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
@@ -14,7 +12,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ValueOnDurability extends CustomEffectComponent {
+public class ValueOnDurability extends Mach_Base {
     private Pattern pattern =
             Pattern.compile("\\s*(\\d+(\\.\\d+)?)%\\s*-\\s*(\\d+(\\.\\d+)?)%\\s*,\\s*(\\d+(\\.\\d+)?)");
     private final List<String> drop = new ArrayList<>();
@@ -25,11 +23,6 @@ public class ValueOnDurability extends CustomEffectComponent {
     @Override
     public String getKey() {
         return "Value On Durability";
-    }
-
-    @Override
-    public ComponentType getType() {
-        return ComponentType.MECHANIC;
     }
 
     @Override

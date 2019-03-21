@@ -2,23 +2,16 @@ package com.github.MrMks.comp.cond;
 
 import com.github.MrMks.utils.checkUntil.CheckUntilRunnable;
 import com.google.common.collect.ImmutableList;
-import com.sucy.skill.dynamic.ComponentType;
-import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.List;
 
-public class CheckUntil extends CustomEffectComponent {
+public class CheckUntil extends Cond_Base {
     //private boolean flag_t = true;
     @Override
     public String getKey() {
         return "Check Until";
-    }
-
-    @Override
-    public ComponentType getType() {
-        return ComponentType.CONDITION;
     }
 
     @Override

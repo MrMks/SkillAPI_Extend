@@ -2,23 +2,16 @@ package com.github.MrMks.comp.mach;
 
 import com.github.MrMks.utils.timer.TimerRunnable;
 import com.sucy.skill.api.util.FlagManager;
-import com.sucy.skill.dynamic.ComponentType;
-import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TimerStart extends CustomEffectComponent {
+public class TimerStart extends Mach_Base {
     @Override
     public String getKey() {
         return "Timer Start";
-    }
-
-    @Override
-    public ComponentType getType() {
-        return ComponentType.MECHANIC;
     }
 
     @Override

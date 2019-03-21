@@ -1,4 +1,4 @@
 name: skillapi_addon
 main: com.github.MrMks.Main
-version: 0.0.1
+version: 0.1.0-UncheckedVersion
 depend: [SkillAPI]

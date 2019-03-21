@@ -2,23 +2,16 @@ package com.github.MrMks.comp.mach;
 
 import com.google.common.collect.ImmutableList;
 import com.sucy.skill.SkillAPI;
-import com.sucy.skill.dynamic.ComponentType;
-import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.List;
 
-public class AutoMaxHealth extends CustomEffectComponent {
+public class AutoMaxHealth extends Mach_Base {
     @Override
     public String getKey() {
         return "Auto Max Health";
-    }
-
-    @Override
-    public ComponentType getType() {
-        return ComponentType.MECHANIC;
     }
 
     @Override

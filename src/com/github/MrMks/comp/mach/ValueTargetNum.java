@@ -1,24 +1,17 @@
 package com.github.MrMks.comp.mach;
 
 import com.google.common.collect.ImmutableList;
-import com.sucy.skill.dynamic.ComponentType;
 import com.sucy.skill.dynamic.DynamicSkill;
-import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class ValueTargetNum extends CustomEffectComponent {
+public class ValueTargetNum extends Mach_Base {
     @Override
     public String getKey() {
         return "Value Target Number";
-    }
-
-    @Override
-    public ComponentType getType() {
-        return ComponentType.MECHANIC;
     }
 
     @Override

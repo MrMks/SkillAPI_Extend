@@ -26,7 +26,7 @@ public class CheckUntilRunnable extends SkillAPIAddonRunnable {
     }
 
     private int timer = 0;
-    private boolean switcher = true;
+    //private boolean switcher = true;
 
     @Override
     public void run() {
