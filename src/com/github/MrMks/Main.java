@@ -1,10 +1,8 @@
 package com.github.MrMks;
 
-import com.github.MrMks.classes.NonClass;
 import com.github.MrMks.comp.cond.*;
 import com.github.MrMks.comp.mach.*;
 import com.github.MrMks.comp.trig.PlayerLevelUp;
-import com.github.MrMks.skill.NonSkill;
 import com.google.common.collect.ImmutableList;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.SkillPlugin;
@@ -19,12 +17,12 @@ import java.util.List;
 public class Main extends JavaPlugin implements SkillPlugin {
     @Override
     public void registerSkills(SkillAPI skillAPI) {
-        skillAPI.addSkill(new NonSkill());
+        //skillAPI.addSkill(new NonSkill());
     }
 
     @Override
     public void registerClasses(SkillAPI skillAPI) {
-        skillAPI.addClass(new NonClass());
+        //skillAPI.addClass(new NonClass());
     }
 
     @Override
@@ -32,6 +30,8 @@ public class Main extends JavaPlugin implements SkillPlugin {
         ImmutableList<Trigger> list = ImmutableList.of(
                 new PlayerLevelUp()
         );
+
+        //Ignore Registered Triggers
         ArrayList<Trigger> arrayList = new ArrayList<>();
 
         for (Trigger trigger :
@@ -60,13 +60,15 @@ public class Main extends JavaPlugin implements SkillPlugin {
                 new MarkToValue(),
                 new HaveMark(),
                 new ValueOnDurability(),
+                //npc related
                 new CNPC_StoredData(),
                 new CNPC_TempData(),
                 new CNPC_StoredDataEqual(),
                 new CNPC_TempDataEqual(),
                 new CNPC_ValueData(),
                 new CNPC_RemoveData(),
-                new CNPC_ClearData()
+                new CNPC_ClearData(),
+                new CNPC_Attr_Fic()
         );
     }
 

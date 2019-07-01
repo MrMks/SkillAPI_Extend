@@ -3,6 +3,7 @@ package com.github.MrMks.utils;
 import net.minecraft.entity.Entity;
 import noppes.npcs.api.NpcAPI;
 import noppes.npcs.api.entity.IEntity;
+import noppes.npcs.api.entity.IPlayer;
 import org.bukkit.Bukkit;
 
 import java.lang.reflect.InvocationTargetException;
@@ -100,4 +101,16 @@ public class CNPC {
     }
     //stored_data end
 
+
+    public static void setPlayerFactionFoint(UUID uuid, int fac, int amount){
+        IEntity entity = getEntity(uuid);
+        if(entity == null) return;
+        IPlayer player = (IPlayer) entity;
+        player.addFactionPoints(fac,amount - player.getFactionPoints(fac));
+    }
+
+    public static int getPlayerFactionPoint(UUID uuid, int fac){
+        IPlayer player = (IPlayer) getEntity(uuid);
+        return player != null ? player.getFactionPoints(fac) : -1;
+    }
 }
