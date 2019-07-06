@@ -1,5 +1,6 @@
 package com.github.MrMks;
 
+import com.github.MrMks.bug.BugFixer;
 import com.github.MrMks.comp.cond.*;
 import com.github.MrMks.comp.mach.*;
 import com.github.MrMks.comp.trig.PlayerLevelUp;
@@ -15,6 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends JavaPlugin implements SkillPlugin {
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        BugFixer.run();
+    }
+
     @Override
     public void registerSkills(SkillAPI skillAPI) {
         //skillAPI.addSkill(new NonSkill());
